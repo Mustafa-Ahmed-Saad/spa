@@ -16,6 +16,7 @@ function queryErrorHandler(error: unknown): void {
   toast({ title, status: "error", variant: "subtle", isClosable: true });
 }
 
+// global sting for queries and mutations
 // to satisfy typescript until this file has uncommented contents
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,10 @@ export const queryClient = new QueryClient({
       // @ts-ignore
       refetchOnReconnect: "false",
       // refetchInterval: 10000,
+    },
+
+    mutations: {
+      onError: queryErrorHandler,
     },
   },
 });

@@ -1,16 +1,16 @@
-import { Box, HStack, Text } from '@chakra-ui/react';
-import dayjs from 'dayjs';
-import { ReactElement } from 'react';
+import { Box, HStack, Text } from "@chakra-ui/react";
+import dayjs from "dayjs";
+import { ReactElement } from "react";
 
-import { Appointment as AppointmentType, User } from '../../../../shared/types';
-import { useUser } from '../user/hooks/useUser';
-import { useReserveAppointment } from './hooks/useReserveAppointment';
-import { appointmentInPast, getAppointmentColor } from './utils';
+import { Appointment as AppointmentType, User } from "../../../../shared/types";
+import { useUser } from "../user/hooks/useUser";
+import { useReserveAppointment } from "./hooks/useReserveAppointment";
+import { appointmentInPast, getAppointmentColor } from "./utils";
 
 // determine whether this appointment can be reserved / un-reserved by logged-in user
 function isClickable(
   user: User | null,
-  appointmentData: AppointmentType,
+  appointmentData: AppointmentType
 ): boolean {
   return !!(
     user?.id &&
@@ -40,20 +40,20 @@ export function Appointment({
       ? () => reserveAppointment(appointmentData)
       : undefined;
     hoverCss = {
-      transform: 'translateY(-1px)',
-      boxShadow: 'md',
-      cursor: 'pointer',
+      transform: "translateY(-1px)",
+      boxShadow: "md",
+      cursor: "pointer",
     };
   }
 
-  const appointmentHour = dayjs(appointmentData.dateTime).format('h a');
+  const appointmentHour = dayjs(appointmentData.dateTime).format("h a");
   return (
     <Box
       borderRadius="lg"
       px={2}
       bgColor={bgColor}
       color={textColor}
-      as={clickable ? 'button' : 'div'}
+      as={clickable ? "button" : "div"}
       onClick={onAppointmentClick}
       _hover={hoverCss}
     >
